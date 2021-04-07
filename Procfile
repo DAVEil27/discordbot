@@ -1,1 +1,1 @@
-worker: python dsicordbot.py
+Worker: python dsicordbot.py
