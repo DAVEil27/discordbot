@@ -4,6 +4,7 @@ import datetime
 import requests
 from PIL import Image, ImageFont, ImageDraw
 import io
+from math import *
 
 
 
@@ -35,8 +36,9 @@ async def clearall( ctx, amount=99999 ):
 
 @client.command( pass_context=True )
 
-async def clear( ctx, amount=2 ):
-    await ctx.channel.purge(limit = amount)
+async def clear( ctx ):
+    await ctx.channel.purge(limit = 2)
+
 
 
 @client.command( pass_context = True )
@@ -92,6 +94,7 @@ async def help(ctx):
     emb.add_field( name= '{}mute'.format( PREFIX ), value='mute particapent (permision-admin)')
     emb.add_field( name= '{}math'.format( PREFIX ), value='do simple math (permision-everyone)')
     emb.add_field( name= '{}card'.format( PREFIX ), value='show your discord card (permision-everyone),(you can also type ` me or i)')
+    emb.add_field( name= '{}root'.format( PREFIX ), value='square root of your number (permision-everyone)')
 
     await ctx.send(embed = emb)
 
@@ -139,6 +142,26 @@ async def math( ctx, a : float, arg, b : float ):
     if arg == '**':
         await ctx.send( f'Result: {a ** b}')
 
+
+@client.command()
+async def root( ctx, c : float):
+    rt = sqrt(c)
+
+    await ctx.send(f' Result: {rt}')
+
+@client.command()
+async def dis( ctx, a : float, b : float, c : float):
+    d = sqrt(b**2 - 4*a*c)
+
+    x1 = round((-b - d)/(2*a), 2)
+    x2 = round((-b + d)/(2*a), 2)
+
+    await ctx.send(f' first result is {x1} second result is {x2}')
+
+
+@client.command()
+async def sibo( ctx ):
+    await ctx.send('@Человек Alex#5046 GO FUCK YOURSELF!')
 
 @client.command(aliases = ['i', 'me', 'card'])
 async def card_user(ctx):
